@@ -2,9 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Полная Инструкция V2 — Ассистент Дизайнера / AI-оператор</title>
-    <meta name="description" content="Интерактивное руководство для ассистента дизайнера. Midjourney, CLO 3D, дизайн-принципы, FAQ и чеклист.">
+    <title>Полная Инструкция — Ассистент Дизайнера v2</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -443,101 +441,6 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 13px;
         }
-        kbd {
-            background: #1E293B; color: #F8FAFC; padding: 3px 8px; border-radius: 4px;
-            font-family: ui-monospace, monospace; font-size: 12px; border: 1px solid #475569;
-            box-shadow: 0 2px 0 #0F172A;
-        }
-
-        /* === V2: Reading Progress Bar === */
-        .progress-bar {
-            position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transition: width 0.1s linear;
-        }
-
-        /* === V2: Dark Mode Toggle === */
-        .dark-toggle {
-            position: fixed; bottom: 24px; right: 24px; z-index: 100;
-            width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
-            background: var(--text-main); color: var(--bg-content);
-            font-size: 20px; display: flex; align-items: center; justify-content: center;
-            box-shadow: var(--shadow-lg); transition: var(--transition);
-        }
-        .dark-toggle:hover { transform: scale(1.15); }
-        body.dark { --text-main:#F3F4F6; --text-muted:#9CA3AF; --text-light:#6B7280;
-            --bg-page:#111827; --bg-content:#1F2937; --border-soft:#374151; --border-hard:#4B5563; }
-        body.dark code { background:#374151; color:#F87171; }
-        body.dark kbd { background:#0F172A; color:#E2E8F0; border-color:#334155; }
-        body.dark th { background:#1E293B; color:#9CA3AF; }
-        body.dark tr:hover td { background-color:#1E293B; }
-        body.dark .screenshot-caption { background:#1E293B; }
-        body.dark .nav-link:hover, body.dark .nav-link.active { background-color:#374151; color:#A5B4FC; }
-
-        /* === V2: Timeline === */
-        .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
-        .timeline::before {
-            content:''; position:absolute; left:12px; top:0; bottom:0; width:3px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-        .tl-item {
-            position: relative; margin-bottom: 24px; padding: 16px 20px;
-            background: var(--bg-page); border-radius: var(--radius-md);
-            border: 1px solid transparent; transition: var(--transition);
-        }
-        .tl-item:hover { background: var(--bg-content); border-color: var(--border-soft); box-shadow: var(--shadow-md); transform: translateX(6px); }
-        .tl-item::before {
-            content:''; position:absolute; left:-26px; top:20px; width:12px; height:12px;
-            background: var(--primary); border-radius:50%; border:3px solid var(--bg-content);
-            box-shadow: var(--shadow-sm);
-        }
-        .tl-time { font-size:13px; font-weight:700; color:var(--primary); margin-bottom:4px; }
-        .tl-desc { font-size:14px; margin:0; }
-
-        /* === V2: Checklist === */
-        .checklist { list-style:none; padding:0; margin:24px 0; }
-        .checklist li {
-            display:flex; align-items:flex-start; gap:12px; padding:12px 16px; margin-bottom:8px;
-            background: var(--bg-page); border-radius: 8px; transition: var(--transition);
-        }
-        .checklist li:hover { background: var(--bg-content); box-shadow: var(--shadow-sm); transform: translateX(4px); }
-        .check-icon { width:24px; height:24px; border-radius:6px; display:flex; align-items:center;
-            justify-content:center; font-size:14px; flex-shrink:0;
-            background:var(--accent-light); color:var(--accent-dark); font-weight:800; }
-
-        /* === V2: Comparison Grid (Good vs Bad) === */
-        .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
-        .compare-card {
-            padding:24px; border-radius: var(--radius-md); transition: var(--transition);
-        }
-        .compare-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
-        .compare-good { background: var(--accent-light); border:2px solid var(--accent); }
-        .compare-bad { background: var(--danger-light); border:2px solid var(--danger); }
-        .compare-label { font-weight:800; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
-        .compare-good .compare-label { color: var(--accent-dark); }
-        .compare-bad .compare-label { color: var(--danger); }
-        .compare-card ul { padding-left:18px; margin:0; }
-        .compare-card li { margin-bottom:6px; font-size:14px; }
-
-        /* === V2: Glossary Accordion === */
-        .glossary-term {
-            padding:16px 20px; background:var(--bg-page); border-radius:8px;
-            margin-bottom:8px; cursor:pointer; transition:var(--transition);
-        }
-        .glossary-term:hover { background:var(--bg-content); box-shadow:var(--shadow-sm); }
-        .glossary-term strong { color:var(--primary); }
-        .glossary-def { display:none; padding:8px 20px 16px; font-size:14px; color:var(--text-muted); }
-        .glossary-term.open + .glossary-def { display:block; }
-        .glossary-term::after { content:'▸'; float:right; transition:var(--transition); color:var(--text-light); }
-        .glossary-term.open::after { transform:rotate(90deg); }
-
-        /* === V2: Version Badge === */
-        .version-badge {
-            display:inline-block; background:linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color:white; padding:4px 12px; border-radius:6px; font-size:11px;
-            font-weight:800; letter-spacing:1px; margin-left:12px;
-        }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
@@ -553,13 +456,10 @@
             .main-content { margin-left: 0; padding: 20px; }
             .page { padding: 32px; }
             .screenshot-grid { grid-template-columns: 1fr; gap: 16px; }
-            .compare-grid { grid-template-columns: 1fr; }
-            .dark-toggle { bottom: 16px; right: 16px; width: 40px; height: 40px; font-size: 16px; }
         }
     </style>
 </head>
 <body>
-<div class="progress-bar" id="progressBar"></div>
 <!-- Sidebar Navigation -->
 <nav class="sidebar">
     <div class="sidebar-brand">Onboarding Guide</div>
@@ -569,17 +469,12 @@
         <li class="nav-item"><a href="#section-3" class="nav-link">3. Установка ПО</a></li>
         <li class="nav-item"><a href="#section-4" class="nav-link">4. Тестовый созвон</a></li>
         <li class="nav-item"><a href="#section-5" class="nav-link">5. Рабочий процесс</a></li>
-        <li class="nav-item"><a href="#section-6" class="nav-link">6. Midjourney</a></li>
-        <li class="nav-item"><a href="#section-7" class="nav-link">7. CLO 3D</a></li>
+        <li class="nav-item"><a href="#section-6" class="nav-link">6. Midjourney Гайд</a></li>
+        <li class="nav-item"><a href="#section-7" class="nav-link">7. CLO 3D Гайд</a></li>
         <li class="nav-item"><a href="#section-8" class="nav-link">8. Дизайн-принципы</a></li>
         <li class="nav-item"><a href="#section-9" class="nav-link">9. Отчётность</a></li>
         <li class="nav-item"><a href="#section-10" class="nav-link">10. Оплата</a></li>
-        <li class="nav-item" style="border-top:1px solid var(--border-soft); padding-top:8px; margin-top:8px;"><a href="#section-12" class="nav-link">🌅 День из жизни</a></li>
-        <li class="nav-item"><a href="#section-13" class="nav-link">✅ Чеклист 1-го дня</a></li>
-        <li class="nav-item"><a href="#section-14" class="nav-link">⚖️ Хорошо vs Плохо</a></li>
-        <li class="nav-item"><a href="#section-15" class="nav-link">⚠️ Ошибки новичков</a></li>
-        <li class="nav-item"><a href="#section-16" class="nav-link">📖 Глоссарий</a></li>
-        <li class="nav-item"><a href="#section-11" class="nav-link">❓ FAQ (16 вопросов)</a></li>
+        <li class="nav-item"><a href="#section-11" class="nav-link">11. FAQ</a></li>
     </ul>
 </nav>
 
@@ -589,9 +484,9 @@
 
 <!-- ===================== TITLE PAGE ===================== -->
 <div class="header" id="top">
-    <div class="badge">Внутренняя База Знаний <span class="version-badge">V2</span></div>
+    <div class="badge">Внутренняя База Знаний</div>
     <h1>Полная Инструкция<br>Ассистент дизайнера / AI-оператор</h1>
-    <p class="subtitle">Интерактивное руководство — 17 разделов, от первого дня до уверенной работы</p>
+    <p class="subtitle">Интерактивное руководство от первого дня до уверенной самостоятельной работы</p>
 </div>
 
 <!-- ==================== 1. О КОМПАНИИ ==================== -->
@@ -919,171 +814,8 @@
     <li><strong>Рост ставки:</strong> через 3-6 месяцев успешной работы повышение базовой ставки.</li>
 </ul>
 
-<!-- ==================== 12. ДЕНЬ ИЗ ЖИЗНИ ==================== -->
-<h2 id="section-12"><span class="num">🌅</span>День из жизни ассистента</h2>
-<p>Типичный рабочий день выглядит так (часовой пояс МСК):</p>
-<div class="timeline">
-    <div class="tl-item"><div class="tl-time">05:00</div><p class="tl-desc">Пишете <code>/in</code> в Telegram. Открываете CLO 3D и Midjourney.</p></div>
-    <div class="tl-item"><div class="tl-time">05:10</div><p class="tl-desc">Менеджер даёт задание: промпт + .zprj файл + референс.</p></div>
-    <div class="tl-item"><div class="tl-time">05:15 – 07:00</div><p class="tl-desc">Генерация в Midjourney (Create) — 20-30 вариантов. Выбираете ТОП-5 центров.</p></div>
-    <div class="tl-item"><div class="tl-time">07:00 – 08:00</div><p class="tl-desc">Edit в Midjourney — расширение лучших центров, убираете артефакты.</p></div>
-    <div class="tl-item"><div class="tl-time">08:00 – 08:30</div><p class="tl-desc">☕ <strong>Перерыв!</strong> Пишете <code>/out</code>. Завтрак, кофе, отдых.</p></div>
-    <div class="tl-item"><div class="tl-time">08:30</div><p class="tl-desc">Пишете <code>/in</code>. Возвращаетесь к работе.</p></div>
-    <div class="tl-item"><div class="tl-time">08:30 – 10:30</div><p class="tl-desc">Наложение текстур в CLO 3D. Скриншоты каждого варианта в чат.</p></div>
-    <div class="tl-item"><div class="tl-time">10:30 – 11:00</div><p class="tl-desc">🍽 <strong>Обед.</strong> <code>/out</code>.</p></div>
-    <div class="tl-item"><div class="tl-time">11:00 – 13:00</div><p class="tl-desc"><code>/in</code>. Доработка по фидбеку менеджера. Ещё 5-7 вариаций.</p></div>
-    <div class="tl-item"><div class="tl-time">13:00 – 13:30</div><p class="tl-desc">Финальные скриншоты, отметка ТОП-3, отправка .zprj файлов.</p></div>
-    <div class="tl-item"><div class="tl-time">13:30</div><p class="tl-desc">Пишете <code>/out</code>. Рабочий день завершён! 🎉 Итого ~8 часов.</p></div>
-</div>
-<div class="box box-success">
-    <p class="box-title">💡 Гибкий график</p>
-    <p>Вы можете разбить 8 часов на весь день как удобно. Главное — набирать 40 часов в неделю и быть на связи в рабочее время.</p>
-</div>
-
-<!-- ==================== 13. ЧЕКЛИСТ ПЕРВОГО ДНЯ ==================== -->
-<h2 id="section-13"><span class="num">✅</span>Чеклист первого дня</h2>
-<p>Пройдите все пункты по порядку в первые 2 часа работы:</p>
-<ul class="checklist">
-    <li><span class="check-icon">1</span><div><strong>Напишите <code>/in</code> в рабочий чат</strong><br><span style="color:var(--text-muted);font-size:13px;">Таймер начинает считать ваше время.</span></div></li>
-    <li><span class="check-icon">2</span><div><strong>Откройте CLO 3D и загрузите тестовый .zprj файл</strong><br><span style="color:var(--text-muted);font-size:13px;">Убедитесь, что программа работает и модель отображается.</span></div></li>
-    <li><span class="check-icon">3</span><div><strong>Войдите в Midjourney через выданный Discord-аккаунт</strong><br><span style="color:var(--text-muted);font-size:13px;">Проверьте: midjourney.com → Create → введите тестовый промпт.</span></div></li>
-    <li><span class="check-icon">4</span><div><strong>Сделайте первый скриншот и отправьте в чат</strong><br><span style="color:var(--text-muted);font-size:13px;">Полный экран CLO 3D с открытым проектом.</span></div></li>
-    <li><span class="check-icon">5</span><div><strong>Сгенерируйте 4-5 вариантов по промпту менеджера</strong><br><span style="color:var(--text-muted);font-size:13px;">Скриншоты всех вариантов → в чат → отметьте лучший.</span></div></li>
-    <li><span class="check-icon">6</span><div><strong>Наложите лучший вариант на 3D-модель</strong><br><span style="color:var(--text-muted);font-size:13px;">Скачайте из Midjourney → перетащите в CLO 3D → скриншот.</span></div></li>
-    <li><span class="check-icon">7</span><div><strong>Сохраните .zprj и отправьте в чат через Reply</strong><br><span style="color:var(--text-muted);font-size:13px;">Reply на скриншот, чтобы было видно что внутри файла.</span></div></li>
-    <li><span class="check-icon">8</span><div><strong>Спросите менеджера: «Всё верно? Продолжать?»</strong><br><span style="color:var(--text-muted);font-size:13px;">Первый день — задавайте как можно больше вопросов!</span></div></li>
-</ul>
-<div class="box box-info">
-    <p class="box-title">🤝 Чего мы НЕ ожидаем от вас в первый день</p>
-    <p>• Не нужно быть профессиональным дизайнером — мы всему научим<br>
-    • Не нужно знать промпты наизусть — мы дадим шаблоны<br>
-    • Не нужно делать «идеально» — важна скорость и количество вариантов<br>
-    • Не нужно стесняться задавать вопросы — это приветствуется!<br>
-    • Не нужно работать без перерывов — отдых обязателен</p>
-</div>
-
-<!-- ==================== 14. ХОРОШО vs ПЛОХО ==================== -->
-<h2 id="section-14"><span class="num">⚖️</span>Хорошо vs Плохо: визуальное сравнение</h2>
-<p>Используйте это как быстрый чеклист при оценке своих дизайнов:</p>
-
-<h3>14.1. Масштаб и композиция</h3>
-<div class="compare-grid">
-    <div class="compare-card compare-good">
-        <div class="compare-label">✅ Хорошо</div>
-        <ul>
-            <li>Много «сюжетов» равномерно по футболке</li>
-            <li>Нет больших пустых однотонных зон</li>
-            <li>Баланс — левая и правая стороны уравновешены</li>
-            <li>Центр дизайна читается с расстояния 2м</li>
-        </ul>
-    </div>
-    <div class="compare-card compare-bad">
-        <div class="compare-label">❌ Плохо</div>
-        <ul>
-            <li>Один крупный элемент и много пустого места</li>
-            <li>Все «сюжеты» скопились в одном углу</li>
-            <li>Дисбаланс — одна сторона тяжелее другой</li>
-            <li>Дизайн «размытый» и не привлекает взгляд</li>
-        </ul>
-    </div>
-</div>
-
-<h3>14.2. Стыки и переходы</h3>
-<div class="compare-grid">
-    <div class="compare-card compare-good">
-        <div class="compare-label">✅ Хорошо</div>
-        <ul>
-            <li>Плавный переход цвета рукав → туловище</li>
-            <li>Единое «направление энергии» по всем частям</li>
-            <li>На стыках нет резких полос и артефактов</li>
-            <li>Рисунок «перетекает» с одной части на другую</li>
-        </ul>
-    </div>
-    <div class="compare-card compare-bad">
-        <div class="compare-label">❌ Плохо</div>
-        <ul>
-            <li>Видна чёткая линия между рукавом и туловищем</li>
-            <li>Цвет рукава и туловища не совпадает</li>
-            <li>Белые линии на стыках</li>
-            <li>Заметный повтор паттерна (рапорт)</li>
-        </ul>
-    </div>
-</div>
-
-<h3>14.3. Цвет и качество</h3>
-<div class="compare-grid">
-    <div class="compare-card compare-good">
-        <div class="compare-label">✅ Хорошо</div>
-        <ul>
-            <li>Естественные, «настоящие» цвета</li>
-            <li>Насыщенный, но не кричащий</li>
-            <li>Выглядит дорого и качественно на 3D-модели</li>
-            <li>Нет пиксельных артефактов</li>
-        </ul>
-    </div>
-    <div class="compare-card compare-bad">
-        <div class="compare-label">❌ Плохо</div>
-        <ul>
-            <li>«Кислотные», ненатуральные цвета</li>
-            <li>Слишком бледный или слишком яркий</li>
-            <li>Видны квадратные блоки, белые линии</li>
-            <li>Закруглённые углы от Midjourney не убраны</li>
-        </ul>
-    </div>
-</div>
-
-<!-- ==================== 15. ОШИБКИ НОВИЧКОВ ==================== -->
-<h2 id="section-15"><span class="num">⚠️</span>Типичные ошибки новичков и как их исправить</h2>
-<table>
-    <tr><th style="width:30%;">Ошибка</th><th style="width:35%;">Почему это плохо</th><th>Как исправить</th></tr>
-    <tr><td><strong>Белые линии на стыках</strong></td><td>Видны на распечатке, выглядит дёшево</td><td>Уберите ластиком в Edit или обрежьте вокруг</td></tr>
-    <tr><td><strong>Закруглённые углы</strong></td><td>Midjourney добавляет автоматически</td><td>Скачайте файлом и загрузите через drag & drop</td></tr>
-    <tr><td><strong>Кислотный цвет</strong></td><td>Не продаётся, выглядит ненатурально</td><td>Проверьте на 3D-модели, 2D ≠ 3D результат!</td></tr>
-    <tr><td><strong>Использование ⭐ с несколькими слоями</strong></td><td>Ломает промпт, плохой результат</td><td>⭐ только с одним файлом в Edit</td></tr>
-    <tr><td><strong>Мало вариантов (2-3 за день)</strong></td><td>Не хватает для выбора лучшего</td><td>Цель: минимум 10 финальных версий за 8ч</td></tr>
-    <tr><td><strong>Обрезанные скриншоты</strong></td><td>Менеджер не видит контекст</td><td>Всегда ПОЛНЫЙ экран + обведите выбранное</td></tr>
-    <tr><td><strong>Забыли <code>/in</code> или <code>/out</code></strong></td><td>Время не считается, оплата неверная</td><td>Привычка: первое и последнее действие дня</td></tr>
-    <tr><td><strong>Разъединили слои сами</strong></td><td>Можно сломать весь проект</td><td>Слои — ТОЛЬКО с менеджером по screenshare</td></tr>
-    <tr><td><strong>Рапорт заметен</strong></td><td>Повтор паттерна виден покупателю</td><td>Увеличьте вариативность, используйте Remix</td></tr>
-    <tr><td><strong>Не сохранили .zprj перед закрытием</strong></td><td>Потеря всей работы</td><td>File → Save Project после каждого варианта</td></tr>
-</table>
-
-<!-- ==================== 16. ГЛОССАРИЙ ==================== -->
-<h2 id="section-16"><span class="num">📖</span>Глоссарий терминов</h2>
-<p>Нажмите на термин, чтобы увидеть определение:</p>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>All-over print</strong> — сплошная печать</div>
-<div class="glossary-def">Дизайн, покрывающий ВСЮ поверхность футболки — рукава, туловище, горловину. В отличие от обычной печати «по центру груди».</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Sublimation</strong> — сублимация</div>
-<div class="glossary-def">Метод печати, при котором краска «вплавляется» в ткань, а не наносится сверху. Даёт яркие, стойкие цвета без шелушения.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Рапорт (Repeat)</strong></div>
-<div class="glossary-def">Заметный повтор одного и того же паттерна. На наших футболках это недопустимо — каждая часть должна выглядеть уникально.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Стыки (Seams)</strong></div>
-<div class="glossary-def">Места соединения частей футболки: рукав ↔ туловище, горловина ↔ туловище. Переход цвета и рисунка на стыках должен быть плавным.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Back Yoke</strong></div>
-<div class="glossary-def">Верхняя часть спины футболки. Если она отображается серой в CLO 3D — значит на неё не назначена текстура.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Артефакт</strong></div>
-<div class="glossary-def">Любая визуальная ошибка: белая линия, квадратная форма, закруглённые углы, пиксельные блоки. Midjourney часто генерирует их — нужно убирать.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>.zprj файл</strong></div>
-<div class="glossary-def">Формат проекта CLO 3D. Содержит 3D-модель, текстуры и настройки ткани. Это основной рабочий файл, который вы отправляете менеджеру.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Промпт (Prompt)</strong></div>
-<div class="glossary-def">Текстовое описание на английском, по которому Midjourney генерирует изображение. Пример: «abstract all-over print sublimation men t-shirt pattern».</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Центр / Середина</strong></div>
-<div class="glossary-def">Главная визуальная часть дизайна, которая оказывается на туловище футболки. Подбирается из сгенерированных вариантов в Midjourney.</div>
-
-<div class="glossary-term" onclick="this.classList.toggle('open')"><strong>Grain Direction</strong></div>
-<div class="glossary-def">Настройка в CLO 3D, определяющая «направление волокон» ткани. Влияет на то, как текстура выглядит на 3D-модели.</div>
-
-<!-- ==================== 11. FAQ (EXPANDED) ==================== -->
-<h2 id="section-11"><span class="num">❓</span>Частые вопросы (FAQ) — 16 вопросов</h2>
+<!-- ==================== 11. FAQ ==================== -->
+<h2 id="section-11"><span class="num">11</span>Частые вопросы (FAQ)</h2>
 <table>
     <tr><th style="width:40%;">Вопрос</th><th>Ответ</th></tr>
     <tr><td>Зачем показывать экран?</td><td>Проверка скорости и смекалки + работа часто проходит со screenshare. Камеру НЕ нужно.</td></tr>
@@ -1092,16 +824,6 @@
     <tr><td>Что если кредиты Fast закончились?</td><td>Переключитесь на Relax. Скажите менеджеру — при необходимости докупим.</td></tr>
     <tr><td>Как предугадать 2D → 3D?</td><td>Никак. Работа наугад — поэтому важно количество. Не тратьте время на «идеальную» 2D-картинку.</td></tr>
     <tr><td>Когда выбирается финальный дизайн?</td><td>Обычно на следующий день — «глаз замыливается».</td></tr>
-    <tr><td><strong>Сколько конкретно я буду получать?</strong></td><td>Стартовая ставка обсуждается индивидуально. Пример: при окладе 40 000₽/мес = ~230₽/час. При окладе 60 000₽ = ~346₽/час. Конкретную ставку менеджер озвучит на собеседовании.</td></tr>
-    <tr><td><strong>Что если я не справлюсь за тестовый час?</strong></td><td>Это нормально! Тестовый час оплачивается в любом случае. Мы смотрим на скорость обучения и способность следовать инструкциям, а не на идеальный результат.</td></tr>
-    <tr><td><strong>Как выглядит обратная связь?</strong></td><td>Менеджер пишет в чат: что хорошо, что исправить. Часто — голосовыми сообщениями с пометками на ваших скриншотах. Всё дружелюбно и конструктивно.</td></tr>
-    <tr><td><strong>Насколько строго 5:00 утра?</strong></td><td>Это идеал. Если вы можете с 6:00 или 7:00 — обсуждаемо. Главное — указать точный график и соблюдать его. Часы можно разбить на блоки.</td></tr>
-    <tr><td><strong>Минимальные требования к ПК?</strong></td><td>RAM: 8GB (лучше 16GB). Видеокарта: любая дискретная. Процессор: Intel i5 / Ryzen 5 или выше. SSD обязателен. Стабильный интернет от 10 Мбит/с.</td></tr>
-    <tr><td><strong>Есть ли выходные? Какие дни работы?</strong></td><td>Стандартно Пн-Пт, но можно обсудить другой график (например, Вт-Сб). 2 выходных в неделю обязательны.</td></tr>
-    <tr><td><strong>Как быстро нужно отвечать?</strong></td><td>В рабочее время — в течение 10-15 минут. Если ушли на перерыв — напишите <code>/out</code>, и тогда никто не ждёт ответа.</td></tr>
-    <tr><td><strong>Будут ли задачи кроме футболок?</strong></td><td>Сейчас 95% — all-over print мужские футболки. В будущем возможны другие продукты, но база останется той же.</td></tr>
-    <tr><td><strong>Кто ещё в команде?</strong></td><td>Менеджер + 2-4 ассистента-дизайнера. Вы общаетесь в основном с менеджером в личном рабочем чате.</td></tr>
-    <tr><td><strong>Как происходит увольнение/уход?</strong></td><td>Предупредите за 3-5 дней. Никаких штрафов или обязательств. Всё оплачивается по факту отработанных часов.</td></tr>
 </table>
 
 <div class="contact-box">
@@ -1110,63 +832,52 @@
 </div>
 
 <div class="footer">
-    V2 · Amazon Design Agency · Интерактивное Руководство · Конфиденциально · Март 2026
+    v2 · Amazon Design Agency · Внутренняя Инструкция · Конфиденциально
 </div>
 
 </div>
 </main>
-
-<button class="dark-toggle" id="darkToggle" title="Тёмный режим">🌙</button>
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // === Sidebar active state ===
-    const sections = document.querySelectorAll('h2[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const progressBar = document.getElementById('progressBar');
+    // Simple script to handle active states on sidebar navigation based on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('h2[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-        // Active nav
-        let current = '';
-        sections.forEach(s => { if (pageYOffset >= s.offsetTop - 150) current = s.id; });
-        navLinks.forEach(l => {
-            l.classList.remove('active');
-            if (l.getAttribute('href').substring(1) === current) l.classList.add('active');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
         });
-        // Progress bar
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        progressBar.style.width = (window.scrollY / h * 100) + '%';
-    });
-
-    // === Image zoom ===
-    document.querySelectorAll('.screenshot img').forEach(img => {
-        img.addEventListener('click', () => {
-            img.style.transition = 'all 0.3s ease';
-            if (img.style.transform === 'scale(1.5)') {
-                img.style.transform = 'scale(1)'; img.style.zIndex = '1';
-            } else {
-                img.style.transform = 'scale(1.5)'; img.style.zIndex = '100';
-            }
+        
+        // Image zoom effect
+        const images = document.querySelectorAll('.screenshot img');
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                if(img.style.transform === 'scale(1.5)') {
+                    img.style.transform = 'scale(1)';
+                    img.style.zIndex = '1';
+                    img.style.position = 'relative';
+                } else {
+                    img.style.transform = 'scale(1.5)';
+                    img.style.zIndex = '100';
+                    img.style.position = 'relative';
+                    img.style.transition = 'all 0.3s ease';
+                }
+            });
         });
     });
-
-    // === Dark mode toggle ===
-    const toggle = document.getElementById('darkToggle');
-    const saved = localStorage.getItem('darkMode');
-    if (saved === 'true') { document.body.classList.add('dark'); toggle.textContent = '☀️'; }
-    toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        toggle.textContent = isDark ? '☀️' : '🌙';
-        localStorage.setItem('darkMode', isDark);
-    });
-
-    // === Glossary accordion ===
-    document.querySelectorAll('.glossary-term').forEach(term => {
-        term.addEventListener('click', () => { term.classList.toggle('open'); });
-    });
-});
 </script>
 </body>
 </html>
-
